@@ -72,8 +72,6 @@
 {typeof unit === 'undefined' ? ingredient.unit : ''}
 <a href={`/ingredient/${ingredient.item}`}>{ingredient.item}</a>
 
-{typeof ingredient.quantity.absolute}
-
 <style>
 	.quantity {
 		color: rgb(125, 0, 104);
