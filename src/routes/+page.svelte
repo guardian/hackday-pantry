@@ -1,12 +1,35 @@
 <script>
+	import Header from '../lib/Header.svelte';
+	import Recipes from '../lib/Recipes.svelte';
+
 	export let data;
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<Header />
+
+<p>
+	Found {data.ingredients.size} individual ingredients
+</p>
 
 <ul>
-	{#each data.recipes as { path, recipes_title }}
-		<li><a href={path}>{recipes_title}</a></li>
+	{#each [...data.ingredients].sort((a, b) => a.localeCompare(b)) as ingredient}
+		<li><a href={`/ingredient/${ingredient}`}>{ingredient}</a></li>
 	{/each}
 </ul>
+
+<Recipes list={data.recipes} />
+
+<style>
+	ul {
+		list-style-type: none;
+		display: flex;
+		flex-wrap: wrap;
+		row-gap: 1rem;
+	}
+
+	li::before {
+		content: '/';
+		margin: 0 0.5rem;
+		color: #ccc;
+	}
+</style>

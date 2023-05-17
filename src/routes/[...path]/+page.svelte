@@ -1,12 +1,14 @@
 <script>
 	import Header from '../../lib/Header.svelte';
 	import Ingredient from '../../lib/Ingredient.svelte';
+	import Title from '../../lib/Title.svelte';
 	export let data;
 </script>
 
 <Header />
 
-<h1>{data.recipes_title}</h1>
+<Title title={data.recipes_title} />
+
 <h2><a href={`https://www.theguardian.com${data.path}`}>See on the guardian.com</a></h2>
 
 <h3>{data.serves}</h3>
@@ -25,3 +27,6 @@
 		<li>{step}</li>
 	{/each}
 </ol>
+
+<style>
+</style>

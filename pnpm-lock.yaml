@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@guardian/source-foundations': 11.0.0
   '@sveltejs/adapter-auto': 2.0.1
   '@sveltejs/kit': 1.17.0
   '@types/node': '18.16'
@@ -11,12 +12,14 @@ specifiers:
   prettier-plugin-svelte: 2.10.0
   svelte: 3.59.1
   svelte-check: 3.3.2
+  tslib: 2.5.0
   typescript: 5.0.4
   vite: 4.3.7
   vitest: 0.31.0
   zod: 3.21.4
 
 devDependencies:
+  '@guardian/source-foundations': 11.0.0_e2uj5gc7zxnrj3akuq5jh4oszi
   '@sveltejs/adapter-auto': 2.0.1_@sveltejs+kit@1.17.0
   '@sveltejs/kit': 1.17.0_svelte@3.59.1+vite@4.3.7
   '@types/node': 18.16.12
@@ -27,6 +30,7 @@ devDependencies:
   prettier-plugin-svelte: 2.10.0_blbg2s7pis747igzn3ilcyh5ou
   svelte: 3.59.1
   svelte-check: 3.3.2_svelte@3.59.1
+  tslib: 2.5.0
   typescript: 5.0.4
   vite: 4.3.7_@types+node@18.16.12
   vitest: 0.31.0
@@ -267,6 +271,20 @@ packages:
   /@eslint/js/8.40.0:
     resolution: {integrity: sha512-ElyB54bJIhXQYVKjDSvCkPO1iU1tSAeVQJbllWJq1XQSmmA4dgFk8CbiBGpiOPxleE48vDogxCtmMYku4HSVLA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@guardian/source-foundations/11.0.0_e2uj5gc7zxnrj3akuq5jh4oszi:
+    resolution: {integrity: sha512-/893dgVhsWV6Tfe23sgk/e8x9B1EoyvcOIjx0ZWE6toU4fjS6IpkBg2eBWYWhZQvWpCX7sj+967wslXCl3/MMg==}
+    peerDependencies:
+      tslib: ^2.4.1
+      typescript: ~4.9.5
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      mini-svg-data-uri: 1.4.4
+      tslib: 2.5.0
+      typescript: 5.0.4
     dev: true
 
   /@humanwhocodes/config-array/0.11.8:
@@ -1201,6 +1219,11 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /mini-svg-data-uri/1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
+    dev: true
+
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
@@ -1721,6 +1744,10 @@ packages:
   /totalist/3.0.1:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
     engines: {node: '>=6'}
+    dev: true
+
+  /tslib/2.5.0:
+    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
     dev: true
 
   /type-check/0.4.0:

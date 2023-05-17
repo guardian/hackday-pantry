@@ -17,13 +17,13 @@ const ingredient = z.object({
 		// 	}
 		// }, ),
 		from: z.string(),
-		to: z.string()
-	})
+		to: z.string(),
+	}),
 });
 
 const ingredients_list = z.object({
 	title: z.string(),
-	ingredients: z.array(ingredient)
+	ingredients: z.array(ingredient),
 });
 
 /** @typedef {z.infer<typeof recipe>} Recipe */
@@ -34,10 +34,10 @@ const recipe = z.object({
 	recipes_title: z.string(),
 	ingredients_lists: z.preprocess(
 		(value) => (value === null ? [] : value),
-		z.array(ingredients_list)
-	)
+		z.array(ingredients_list),
+	),
 });
 
 export const recipes_schema = z.object({
-	Items: z.array(recipe)
+	Items: z.array(recipe),
 });

@@ -13,6 +13,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@guardian/source-foundations": "11.0.0",
 		"@sveltejs/adapter-auto": "2.0.1",
 		"@sveltejs/kit": "1.17.0",
 		"@types/node": "18.16",
@@ -23,6 +24,7 @@
 		"prettier-plugin-svelte": "2.10.0",
 		"svelte": "3.59.1",
 		"svelte-check": "3.3.2",
+		"tslib": "2.5.0",
 		"typescript": "5.0.4",
 		"vite": "4.3.7",
 		"vitest": "0.31.0",
