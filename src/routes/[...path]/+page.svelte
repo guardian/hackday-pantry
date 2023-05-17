@@ -2,31 +2,50 @@
 	import Header from '../../lib/Header.svelte';
 	import Ingredient from '../../lib/Ingredient.svelte';
 	import Title from '../../lib/Title.svelte';
+	import Step from '../../lib/Step.svelte';
 	export let data;
 </script>
 
 <Header />
 
-<Title title={data.recipes_title} />
+<main>
+	<Title title={data.recipes_title} />
 
-<h2><a href={`https://www.theguardian.com${data.path}`}>See on the guardian.com</a></h2>
+	View the full article on <a href={`https://www.theguardian.com${data.path}`}>guardian.co.uk</a>
 
-<h3>{data.serves}</h3>
+	<h3>{data.serves}</h3>
 
-{#each data.ingredients_lists as { title, ingredients }}
-	<h2>{title}</h2>
-	<ul>
-		{#each ingredients as ingredient}
-			<li><Ingredient {ingredient} /></li>
-		{/each}
-	</ul>
-{/each}
-
-<ol>
-	{#each data.steps as step}
-		<li>{step}</li>
+	{#each data.ingredients_lists as { title, ingredients }}
+		<h2>{title}</h2>
+		<ul>
+			{#each ingredients as ingredient}
+				<li>
+					<Ingredient {ingredient} />
+				</li>
+			{/each}
+		</ul>
 	{/each}
-</ol>
+
+	<!-- <ol> -->
+	{#each data.steps as step, index}
+		<Step text={step} step_number={index + 1} />
+	{/each}
+	<!-- </ol> -->
+</main>
 
 <style>
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	a {
+		color: #0077b6;
+		text-decoration: underline;
+	}
+
+	main {
+		padding: 16px;
+	}
 </style>

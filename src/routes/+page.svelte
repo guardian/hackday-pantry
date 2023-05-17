@@ -12,8 +12,8 @@
 </p>
 
 <ul>
-	{#each [...data.ingredients].sort((a, b) => a.localeCompare(b)) as ingredient}
-		<li><a href={`/ingredient/${ingredient}`}>{ingredient}</a></li>
+	{#each [...data.ingredients.entries()].sort((a, b) => b[1] - a[1]) as [name, count]}
+		<li><a class="ingredient" href={`/ingredient/${name}`}>{name} ({count})</a></li>
 	{/each}
 </ul>
 
@@ -27,9 +27,13 @@
 		row-gap: 1rem;
 	}
 
-	li::before {
+	.ingredient {
+		color: #bb3b80;
+	}
+
+	li::after {
 		content: '/';
 		margin: 0 0.5rem;
-		color: #ccc;
+		color: #707070;
 	}
 </style>

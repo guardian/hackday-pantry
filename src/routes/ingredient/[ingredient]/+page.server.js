@@ -6,5 +6,6 @@ export async function load({ params: { ingredient } }) {
 		recipes: recipes.filter(({ ingredients_lists }) =>
 			ingredients_lists.some((list) => list.ingredients.some(({ item }) => item === ingredient)),
 		),
+		ingredient,
 	};
 }

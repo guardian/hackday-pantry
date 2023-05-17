@@ -6,16 +6,10 @@ const ingredient = z.object({
 	// comment: z.string(),
 	// text: z.string(),
 	quantity: z.object({
-		absolute: z.number().nonnegative().finite().or(z.string()),
-		// z.preprocess((value) => {
-		// 	switch (z.string().parse(value).toLowerCase()) {
-		// 		case '':
-		// 		case 'a few':
-		// 			return 0;
-		// 		default:
-		// 			return Number(value);
-		// 	}
-		// }, ),
+		absolute: z.preprocess((value) => {
+			const maybe_number = Number(value);
+			return Number.isNaN(maybe_number) ? value : maybe_number;
+		}, z.number().or(z.string())),
 		from: z.string(),
 		to: z.string(),
 	}),
