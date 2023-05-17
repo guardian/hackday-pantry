@@ -1,8 +1,9 @@
 <script>
-	import Header from '../../lib/Header.svelte';
-	import Ingredient from '../../lib/Ingredient.svelte';
-	import Title from '../../lib/Title.svelte';
-	import Step from '../../lib/Step.svelte';
+	import Header from '../../../lib/Header.svelte';
+	import Ingredient from '../../../lib/Ingredient.svelte';
+	import Title from '../../../lib/Title.svelte';
+	import Step from '../../../lib/Step.svelte';
+
 	export let data;
 </script>
 
@@ -16,7 +17,7 @@
 	<h3>{data.serves}</h3>
 
 	{#each data.ingredients_lists as { title, ingredients }}
-		<h2>{title}</h2>
+		<h4>{title}</h4>
 		<ul>
 			{#each ingredients as ingredient}
 				<li>
@@ -34,6 +35,9 @@
 </main>
 
 <style>
+	h2 {
+		margin-top: 6rem;
+	}
 	ul {
 		display: flex;
 		flex-direction: column;

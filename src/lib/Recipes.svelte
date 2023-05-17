@@ -4,7 +4,7 @@
 </script>
 
 <ul>
-	{#each list as { path, recipes_title }}
-		<li><a href={path}>{recipes_title}</a></li>
+	{#each list as { path, recipes_title, recipeId }}
+		<li><a href={`${path}/${recipeId}`}>{recipes_title}</a></li>
 	{/each}
 </ul>

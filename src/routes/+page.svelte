@@ -1,23 +1,81 @@
 <script>
 	import Header from '../lib/Header.svelte';
 	import Recipes from '../lib/Recipes.svelte';
+	import { extract_ingredients } from '../lib/ingredients';
 
 	export let data;
+
+	let search = '';
+
+	$: selection = /** @type {Set<string>} */ (new Set());
+
+	$: list = data.recipes.filter(({ ingredients_lists }) =>
+		ingredients_lists.some(({ ingredients: listed }) =>
+			[...selection].every((term) => listed.some(({ item }) => item.includes(term))),
+		),
+	);
+
+	$: ingredients = extract_ingredients(list);
+
+	$: ingredients_list = [...ingredients]
+		.filter(([name]) => !selection.has(name) && name.includes(search))
+		.sort((a, b) => b[1] - a[1]);
 </script>
 
 <Header />
 
 <p>
-	Found {data.ingredients.size} individual ingredients
+	Found {ingredients.size} individual ingredients
 </p>
 
-<ul>
-	{#each [...data.ingredients.entries()].sort((a, b) => b[1] - a[1]) as [name, count]}
-		<li><a class="ingredient" href={`/ingredient/${name}`}>{name} ({count})</a></li>
-	{/each}
-</ul>
+<input
+	type="search"
+	bind:value={search}
+	on:keydown={(event) => {
+		if (event.key === 'Enter') {
+			event.preventDefault();
+			const [ingredient] = ingredients_list[0] ?? [];
+			if (ingredient) {
+				selection.add(ingredient);
+				selection = selection;
+				search = '';
+			}
+		}
+	}}
+/>
 
-<Recipes list={data.recipes} />
+{#if selection.size > 0}
+	{#each [...selection] as ingredient}
+		<button
+			on:click={() => {
+				selection.delete(ingredient);
+				selection = selection;
+			}}
+		>
+			{ingredient} &cross;
+		</button>
+	{/each}
+{/if}
+
+{#if list.length > 3}
+	<ul>
+		{#each ingredients_list as [name, count]}
+			<li>
+				<button
+					on:click={() => {
+						selection.add(name);
+						selection = selection;
+					}}
+					class="ingredient">{name} ({count})</button
+				>
+			</li>
+		{/each}
+	</ul>
+{/if}
+
+{#if selection.size > 0}
+	<Recipes {list} />
+{/if}
 
 <style>
 	ul {

@@ -23,6 +23,7 @@ const ingredients_list = z.object({
 /** @typedef {z.infer<typeof recipe>} Recipe */
 const recipe = z.object({
 	path: z.string(),
+	recipeId: z.number(),
 	serves: z.string(),
 	steps: z.array(z.string()),
 	recipes_title: z.string(),

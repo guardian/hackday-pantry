@@ -14,7 +14,7 @@
 	header {
 		width: 100%;
 		padding: 8px;
-		/* padding-right: 64px; */
+		box-sizing: border-box;
 		font-size: xx-large;
 		background-color: #052962;
 		text-align: right;
