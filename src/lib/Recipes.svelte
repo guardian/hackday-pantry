@@ -35,12 +35,15 @@
 		display: flex;
 		list-style-type: none;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 2rem;
+	}
+
+	a {
+		color: #7d0068;
 	}
 
 	.got {
-		color: #7d0068;
-		background-color: rgb(251, 224, 239);
+		color: #bb3b80;
 	}
 
 	.spacer {

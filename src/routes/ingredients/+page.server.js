@@ -7,5 +7,3 @@ export async function load() {
 		ingredients: extract_ingredients(recipes),
 	};
 }
-
-export const csr = false;

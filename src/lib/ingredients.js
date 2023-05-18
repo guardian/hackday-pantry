@@ -18,7 +18,8 @@ export const extract_ingredients = (list) =>
 export const completion = (recipe, pantry_ingredients) =>
 	recipe.ingredients_lists.reduce(
 		({ has, missing }, { ingredients }) => {
-			for (const { item: ingredient } of ingredients) {
+			for (const { item } of ingredients) {
+				const ingredient = normalise(item);
 				if (!ingredient) continue;
 				if (pantry_ingredients.has(normalise(ingredient))) has.add(ingredient);
 				else missing.add(ingredient);

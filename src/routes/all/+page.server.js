@@ -6,5 +6,3 @@ export async function load() {
 		recipes,
 	};
 }
-
-export const csr = false;

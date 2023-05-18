@@ -13,5 +13,3 @@ export async function load({ params }) {
 		ingredient,
 	};
 }
-
-export const csr = false;
