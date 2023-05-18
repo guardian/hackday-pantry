@@ -1,7 +1,8 @@
-const DASHES_AND_COMMAS = /-|–|\/|,|!/g;
+const DASHES_AND_COMMAS = /-|–|\/|,|!|\(|\)/g;
 const MULTIPLE_SPACES = /\s{2,}/g;
 const E_ACCENTS = /è|é|ë/g;
 const I_ACCENTS = /î|ï/g;
+const DIGITS = /\b\d+\b/g;
 
 const ADJECTIVES =
 	/\b(organic|fresh(ly)?|good|quality|free range|old( fashioned)?|fine(ly)?|shredded|chopped|grated|sliced|diced|whole|small|medium|large|sized?|soft(ened)?|iced|cold|warm)\b/g;
@@ -11,6 +12,7 @@ export const normalise = (ingredient) => {
 	const normalised = ingredient
 		.toLowerCase()
 		.replaceAll(DASHES_AND_COMMAS, ' ')
+		.replaceAll(DIGITS, '')
 		.replaceAll(ADJECTIVES, '')
 		.replace(E_ACCENTS, 'e')
 		.replace(I_ACCENTS, 'i')

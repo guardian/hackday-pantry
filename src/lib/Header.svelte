@@ -1,7 +1,7 @@
 <header>
-	<div class="header">
-		<a href="/">Guardian Pantry</a>
-	</div>
+	<a href="/restrictions">pick by restrictions</a>
+	<a href="/ingredients">see all ingredients</a>
+	<a href="/">Guardian Pantry</a>
 </header>
 
 <style>
@@ -15,7 +15,7 @@
 		width: 100%;
 		padding: 8px;
 		box-sizing: border-box;
-		font-size: xx-large;
+		font-size: x-large;
 		background-color: #052962;
 		text-align: right;
 	}
