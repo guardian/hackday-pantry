@@ -1,6 +1,6 @@
 import { recipes } from '../../../recipes.js';
 
-/** @type {import('./$types').PageServerLoad} */
+/** @type {import('./$types.js').PageServerLoad} */
 export async function load({ params: { ingredient } }) {
 	return {
 		recipes: recipes.filter(({ ingredients_lists }) =>
