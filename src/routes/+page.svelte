@@ -27,11 +27,11 @@
 		search = '';
 	};
 
-	/** @type {import('./$types').Snapshot<{search: string, selection: Set<string>}>} */
+	/** @type {import('./$types').Snapshot<{search: string, selection: string[]}>} */
 	export const snapshot = {
-		capture: () => ({ search, selection }),
+		capture: () => ({ search, selection: [...selection] }),
 		restore: ({ search: search_snapshot, selection: selection_snapshot }) => {
-			selection = selection_snapshot;
+			selection = new Set(selection_snapshot);
 			search = search_snapshot;
 		},
 	};

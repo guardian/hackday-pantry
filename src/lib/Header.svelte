@@ -1,6 +1,6 @@
 <header>
 	<div class="header">
-		<a href="/">The Foodian</a>
+		<a href="/">Guardian Pantry</a>
 	</div>
 </header>
 
