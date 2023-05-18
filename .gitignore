@@ -6,6 +6,7 @@ node_modules
 /package
 temp
 
+src/data/
 .env
 .env.*
 !.env.example
