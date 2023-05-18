@@ -1,0 +1,39 @@
+name: Continuous Deployment
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Required for Riffraff upload (which writes to AWS)
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2.2.4
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+
+      # Then upload it as an artifact
+      - uses: actions/upload-artifact@v3
+        with:
+          path: build
+
+      # Then invoke this action (replacing app and domain)
+      - uses: guardian/actions-static-site@v2
+        with:
+          app: pantry
+          domain: pantry.gutools.co.uk
+          guActionsRiffRaffRoleArn: ${{ secrets.GU_RIFF_RAFF_ROLE_ARN }}
