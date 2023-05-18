@@ -1,4 +1,6 @@
 <script>
+	import { normalise } from './normalise.js';
+
 	/** @type {import('../parser.js').Recipe["ingredients_lists"][number]["ingredients"][number]}*/
 	export let ingredient;
 
@@ -70,7 +72,7 @@
 
 <span class="quantity">{formatted(ingredient.quantity.absolute)}</span>
 {typeof unit === 'undefined' ? ingredient.unit : ''}
-<a href={`/ingredient/${ingredient.item}`}>{ingredient.item}</a>
+<a href={`/ingredient/${normalise(ingredient.item).replaceAll(' ', '_')}`}>{ingredient.item}</a>
 
 <style>
 	.quantity {
