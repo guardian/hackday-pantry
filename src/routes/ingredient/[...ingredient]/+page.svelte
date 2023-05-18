@@ -11,7 +11,7 @@
 	Recipes containing <strong>{data.ingredient}</strong>
 </h1>
 
-<Recipes list={data.recipes} />
+<Recipes list={data.recipes} ingredients={new Set([data.ingredient])} />
 
 <style>
 	h1 {
