@@ -87,7 +87,7 @@
 </ul>
 
 {#if selection.size > 0}
-	<Recipes {list} />
+	<Recipes {list} ingredients={selection} />
 {/if}
 
 <style>

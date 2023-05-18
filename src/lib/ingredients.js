@@ -10,3 +10,24 @@ export const extract_ingredients = (list) =>
 		}
 		return accumulator;
 	}, /** @type {Map<string, number>} */ (new Map()));
+
+/**
+ * @param {import("../parser").Recipe} recipe
+ * @param {Set<string>} pantry_ingredients
+ */
+export const completion = (recipe, pantry_ingredients) =>
+	recipe.ingredients_lists.reduce(
+		({ has, missing }, { ingredients }) => {
+			for (const { item: ingredient } of ingredients) {
+				if (!ingredient) continue;
+				if (pantry_ingredients.has(normalise(ingredient))) has.add(ingredient);
+				else missing.add(ingredient);
+			}
+			return { has, missing, percentage: has.size / (has.size + missing.size) };
+		},
+		{
+			has: /** @type {Set<string>} */ (new Set()),
+			missing: /** @type {Set<string>} */ (new Set()),
+			percentage: 0,
+		},
+	);

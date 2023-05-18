@@ -35,9 +35,6 @@
 </main>
 
 <style>
-	h2 {
-		margin-top: 6rem;
-	}
 	ul {
 		display: flex;
 		flex-direction: column;
