@@ -5,7 +5,7 @@ const I_ACCENTS = /î|ï/g;
 const DIGITS = /\b\d+\b/g;
 
 const ADJECTIVES =
-	/\b(organic|fresh(ly)?|good|quality|free range|old( fashioned)?|fine(ly)?|shredded|chopped|grated|sliced|diced|whole|small|medium|large|sized?|soft(ened)?|iced|cold|warm)\b/g;
+	/\b(organic|fresh(ly)?|good|quality|free range|very|extra|old( fashioned)?|fine(ly)?|shredded|chopped|grated|sliced|diced|whole|small|medium|large|sized?|soft(ened)?|iced|cold|warm)\b/g;
 
 /** @param {string} ingredient */
 export const normalise = (ingredient) => {
@@ -28,8 +28,13 @@ export const normalise = (ingredient) => {
 		case 'small onions':
 		case 'medium onion':
 		case 'medium onions':
+		case 'brown onion':
+		case 'brown onions':
+		case 'yellow onion':
+		case 'yellow onions':
 		case 'to onions':
-		case 'or 3 onions':
+		case 'or onions':
+		case 'english onions':
 			return 'onion';
 
 		case 'red onion':
@@ -77,12 +82,9 @@ export const normalise = (ingredient) => {
 		case 'egg white':
 		case 'egg whites':
 		case 'large egg whites':
-		case 'medium egg whites':
-		case 'free-range egg white':
-		case 'free-range egg whites':
-		case 'free-range organic egg white':
-		case 'free-range organic egg whites':
-		case 'organic/free-range medium egg whites':
+		case 'free range egg white':
+		case 'free range egg whites':
+		case 'free rang egg whites':
 			return 'egg white';
 
 		// peppers and chillies
@@ -145,7 +147,7 @@ export const normalise = (ingredient) => {
 			return 'lemongrass';
 
 		case 'olive oil':
-		case 'extra virgin olive oil':
+		case 'virgin olive oil':
 			return 'olive oil';
 
 		case 'vegetable oil':
@@ -232,6 +234,15 @@ export const normalise = (ingredient) => {
 		case 'apple':
 		case 'apples':
 			return 'apple';
+
+		case 'puff pastry':
+		case 'all butter puff pastry':
+			return 'puff pastry';
+
+		case 'tofu':
+		case 'firm tofu':
+		case 'firm silken tofu':
+			return 'tofu';
 
 		default:
 			return normalised;
