@@ -112,19 +112,31 @@ export const normalise = (ingredient) => {
 			return 'chilli powder';
 
 		// sugar
-		case 'soft light brown sugar':
-		case 'soft brown sugar':
+		case 'brown sugar':
+		case 'light brown sugar':
+		case 'dark brown sugar':
 			return 'brown sugar';
 
 		case 'golden caster sugar':
 		case 'unrefined caster sugar':
 			return 'caster sugar';
 
+		case 'muscovado sugar':
 		case 'light muscovado':
-			return 'return muscovado sugar';
-
+		case 'light muscovado sugar':
+		case 'dark muscovado sugar':
 		case 'dark brown muscovado sugar':
-			return 'dark muscovado sugar';
+			return 'muscovado sugar';
+
+		case 'cinnamon':
+		case 'ground cinnamon':
+		case 'ground cassia cinnamon':
+			return 'cinnamon';
+
+		case 'cinnamon stick':
+		case 'cinnamon sticks':
+		case 'stick cinnamon':
+			return 'cinnamon stick';
 
 		// tomatoes
 		case 'tomato':
