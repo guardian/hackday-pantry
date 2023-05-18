@@ -1,6 +1,7 @@
-const DASHES_AND_COMMAS = /-|–|\/|,/g;
+const DASHES_AND_COMMAS = /-|–|\/|,|!/g;
 const MULTIPLE_SPACES = /\s{2,}/g;
-const CREME = /\bcrème\b/;
+const E_ACCENTS = /è|é|ë/g;
+const I_ACCENTS = /î|ï/g;
 
 const ADJECTIVES =
 	/\b(organic|fresh|good quality|free range|old fashioned|finely|shredded|chopped|sliced|whole|small|medium|large|sized?|soft|softened|iced|cold|warm)\b/g;
@@ -11,7 +12,8 @@ export const normalise = (ingredient) => {
 		.toLowerCase()
 		.replaceAll(DASHES_AND_COMMAS, ' ')
 		.replaceAll(ADJECTIVES, '')
-		.replace(CREME, 'creme')
+		.replace(E_ACCENTS, 'e')
+		.replace(I_ACCENTS, 'i')
 		.replaceAll(MULTIPLE_SPACES, ' ')
 		.trim();
 
@@ -109,21 +111,26 @@ export const normalise = (ingredient) => {
 			return 'dark muscovado sugar';
 
 		// tomatoes
+		case 'tomato':
 		case 'tomatoes':
-			return 'tomtato';
+			return 'tomato';
 
+		case 'tomato puree':
 		case 'tomato purée':
 			return 'tomato puree';
 
+		case 'tomato passata':
 		case 'passata':
 		case 'tomato passata sauce':
 			return 'tomato passata';
 
+		case 'lemon':
 		case 'lemons':
 		case 'unwaxed lemon':
 		case 'lemon wedges':
 			return 'lemon';
 
+		case 'lemongrass':
 		case 'lemon grass':
 			return 'lemongrass';
 
@@ -194,6 +201,10 @@ export const normalise = (ingredient) => {
 		case 'hot water':
 		case 'boiling water':
 			return 'water';
+
+		case 'apple':
+		case 'apples':
+			return 'apple';
 
 		default:
 			return normalised;
