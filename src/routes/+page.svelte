@@ -2,6 +2,7 @@
 	import Header from '../lib/Header.svelte';
 	import Recipes from '../lib/Recipes.svelte';
 	import { extract_ingredients } from '../lib/ingredients';
+	import { normalise } from '../lib/normalise';
 
 	export let data;
 
@@ -10,15 +11,15 @@
 
 	$: list = data.recipes.filter(({ ingredients_lists }) =>
 		ingredients_lists.some(({ ingredients: listed }) =>
-			[...selection].every((term) => listed.some(({ item }) => item.includes(term))),
+			[...selection].every((term) => listed.some(({ item }) => normalise(item) === term)),
 		),
 	);
 
 	$: ingredients = extract_ingredients(list);
 
-	$: ingredients_list = [...ingredients]
-		.filter(([name]) => !selection.has(name) && name.includes(search))
-		.sort((a, b) => b[1] - a[1]);
+	$: matching_ingredients_list = [...ingredients]
+		.filter(([name]) => !selection.has(name) && name.includes(normalise(search)))
+		.sort(([, a], [, b]) => b - a);
 
 	/** @param {string} ingredient */
 	const add_ingredient = (ingredient) => {
@@ -48,8 +49,8 @@
 		on:keydown={(event) => {
 			if (event.key === 'Enter') {
 				event.preventDefault();
-				const [ingredient] = ingredients_list[0] ?? [];
-				if (ingredient) add_ingredient(ingredient);
+				const [first_matching_ingredient] = matching_ingredients_list;
+				if (first_matching_ingredient) add_ingredient(first_matching_ingredient[0]);
 			}
 		}}
 	/>
@@ -65,23 +66,23 @@
 				search = '';
 			}}
 		>
-			{ingredient} &cross;
+			{ingredient} -
 		</button>
 	{/each}
 	{#if list.length > 5}
-		{#each ingredients_list.slice(0, 12) as [name], index}
+		{#each matching_ingredients_list.slice(0, 12) as [name], index}
 			<li>
 				<button
 					class="ingredient"
 					class:first={index === 0}
 					on:click={() => {
 						add_ingredient(name);
-					}}>{name} &cir;</button
+					}}>{name} +</button
 				>
 			</li>
 		{/each}
-		{#if ingredients_list.length > 12}
-			<li>and {ingredients_list.length - 12} more…</li>
+		{#if matching_ingredients_list.length > 12}
+			<li>and {matching_ingredients_list.length - 12} more…</li>
 		{/if}
 	{/if}
 </ul>
@@ -123,7 +124,7 @@
 	}
 
 	.ingredient.first {
-		border-width: 4px;
+		outline: 2px solid salmon;
 	}
 
 	.ingredient.selected {

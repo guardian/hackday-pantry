@@ -4,7 +4,7 @@ const E_ACCENTS = /è|é|ë/g;
 const I_ACCENTS = /î|ï/g;
 
 const ADJECTIVES =
-	/\b(organic|fresh|good quality|free range|old fashioned|finely|shredded|chopped|sliced|whole|small|medium|large|sized?|soft|softened|iced|cold|warm)\b/g;
+	/\b(organic|fresh(ly)?|good|quality|free range|old( fashioned)?|fine(ly)?|shredded|chopped|grated|sliced|diced|whole|small|medium|large|sized?|soft(ened)?|iced|cold|warm)\b/g;
 
 /** @param {string} ingredient */
 export const normalise = (ingredient) => {
@@ -21,14 +21,26 @@ export const normalise = (ingredient) => {
 		// onions
 		case 'onion':
 		case 'onions':
+		case 'crisp onions':
 		case 'small onion':
 		case 'small onions':
 		case 'medium onion':
 		case 'medium onions':
-		case 'red onion':
-		case 'large white onion':
-		case '-to- onions':
+		case 'to onions':
+		case 'or 3 onions':
 			return 'onion';
+
+		case 'red onion':
+		case 'red onions':
+			return 'red onion';
+
+		case 'white onion':
+		case 'white onions':
+			return 'white onion';
+
+		case 'spring onion':
+		case 'spring onions':
+			return 'spring onion';
 
 		// eggs
 		case 'egg':
@@ -115,10 +127,6 @@ export const normalise = (ingredient) => {
 		case 'tomatoes':
 			return 'tomato';
 
-		case 'tomato puree':
-		case 'tomato purée':
-			return 'tomato puree';
-
 		case 'tomato passata':
 		case 'passata':
 		case 'tomato passata sauce':
@@ -135,7 +143,6 @@ export const normalise = (ingredient) => {
 			return 'lemongrass';
 
 		case 'olive oil':
-		case 'extra-virgin olive oil':
 		case 'extra virgin olive oil':
 			return 'olive oil';
 
@@ -143,26 +150,44 @@ export const normalise = (ingredient) => {
 		case 'veg oil':
 			return 'vegetable oil';
 
-		case 'creme fraiche ':
-		case 'creme fraîche':
-			return 'creme fraiche';
-
-		// flour
 		// herbs
+		case 'herbs':
+		case 'mixed dried herbs':
+		case 'dried mixed herbs':
+		case 'mixed herbs':
+			return 'herbs';
 		// salt
+		case 'sea salt':
+		case 'fine sea salt':
+		case 'flaky sea salt':
+			return 'sea salt';
+
+		case 'table salt':
+		case 'fine salt':
+			return 'salt';
 		// oil
 
 		// butter
+		case 'butter':
 		case 'melted butter':
-		case 'good butter':
 		case 'very butter':
 			return 'butter';
+
 		case 'leftover brandy butter':
 		case 'courvoisier brandy butter':
 		case 'waitrose brandy butter':
 		case 'tesco brandy butter':
 			return 'brandy butter';
+
 		// cheese (parmesan, cheddar)
+		case 'parmesan':
+		case 'freshly grated parmesan':
+		case 'freshly grated parmesan cheese':
+		case 'parmesan cheese':
+			return 'parmesan';
+
+		case 'freshly grated nutmeg':
+			return 'nutmeg';
 
 		// spices (paprika, )
 		case 'sweet smoked paprika':
@@ -185,7 +210,7 @@ export const normalise = (ingredient) => {
 			return 'white wine';
 
 		case 'glass red wine':
-		case 'good quality red wine':
+		case 'red wine':
 		case 'full bodied red wine':
 		case 'robust red wine':
 			return 'red wine';
