@@ -5,7 +5,7 @@ const I_ACCENTS = /î|ï/g;
 const DIGITS = /\b\d+\b/g;
 
 const ADJECTIVES =
-	/\b(organic|fresh(ly)?|good|quality|free range|very|extra|old( fashioned)?|fine(ly)?|shredded|chopped|grated|sliced|diced|whole|small|medium|large|sized?|soft(ened)?|iced|cold|warm)\b/g;
+	/\b(organic|fresh(ly)?|good|quality|free range|very|extra|old( fashioned)?|fine(ly)?|shredded|chopped|grated|sliced|diced|whole|small|medium|large|sized?|soft(ened)?|iced|(ice )?cold|chilled|(luke)?warm)\b/g;
 
 /** @param {string} ingredient */
 export const normalise = (ingredient) => {
@@ -24,10 +24,6 @@ export const normalise = (ingredient) => {
 		case 'onion':
 		case 'onions':
 		case 'crisp onions':
-		case 'small onion':
-		case 'small onions':
-		case 'medium onion':
-		case 'medium onions':
 		case 'brown onion':
 		case 'brown onions':
 		case 'yellow onion':
@@ -52,43 +48,22 @@ export const normalise = (ingredient) => {
 		// eggs
 		case 'egg':
 		case 'eggs':
-		case 'small egg':
-		case 'small eggs':
-		case 'medium egg':
-		case 'medium eggs':
-		case 'medium free-range eggs':
-		case 'large free-range eggs':
-		case 'large egg':
-		case 'large eggs':
 		case 'whole egg':
 		case 'whole eggs':
-		case 'free-range egg':
-		case 'free-range eggs':
 		case 'free range eggs':
-		case 'organic free-range eggs':
+		case 'organic eggs':
 			return 'egg';
 
 		case 'egg yolk':
 		case 'egg yolks':
-		case 'large egg yolks':
-		case 'medium egg yolks':
-		case 'free-range egg yolk':
-		case 'free-range egg yolks':
-		case 'free-range organic egg yolk':
-		case 'free-range organic egg yolks':
 		case 'free rangemedium egg yolks':
 			return 'egg yolk';
 
 		case 'egg white':
 		case 'egg whites':
-		case 'large egg whites':
-		case 'free range egg white':
-		case 'free range egg whites':
-		case 'free rang egg whites':
 			return 'egg white';
 
 		// peppers and chillies
-		case 'freshly ground black pepper':
 		case 'ground black pepper':
 			return 'black pepper';
 
@@ -96,7 +71,6 @@ export const normalise = (ingredient) => {
 			return 'red pepper';
 
 		case 'red chillies':
-		case 'fresh red chillies':
 			return 'red chilli';
 
 		case 'green chillies':
@@ -175,7 +149,15 @@ export const normalise = (ingredient) => {
 		// salt
 		case 'sea salt':
 		case 'fine sea salt':
+		case 'flaky salt':
 		case 'flaky sea salt':
+		case 'flaked sea salt':
+		case 'sea salt flakes':
+		case 'maldon sea salt':
+		case 'maldon salt':
+		case 'celtic sea salt':
+		case 'coarse sea salt':
+		case 'crushed sea salt':
 			return 'sea salt';
 
 		case 'table salt':
@@ -187,6 +169,7 @@ export const normalise = (ingredient) => {
 		case 'butter':
 		case 'melted butter':
 		case 'very butter':
+		case 'unsalted butter':
 			return 'butter';
 
 		case 'leftover brandy butter':
@@ -197,8 +180,8 @@ export const normalise = (ingredient) => {
 
 		// cheese (parmesan, cheddar)
 		case 'parmesan':
-		case 'freshly grated parmesan':
-		case 'freshly grated parmesan cheese':
+		case 'grated parmesan':
+		case 'grated parmesan cheese':
 		case 'parmesan cheese':
 			return 'parmesan';
 
@@ -206,27 +189,33 @@ export const normalise = (ingredient) => {
 			return 'nutmeg';
 
 		// spices (paprika, )
+		case 'smoked sweet paprika':
 		case 'sweet smoked paprika':
 			return 'smoked sweet paprika';
+
 		case 'hot paprika':
 			return 'paprika';
 		// garlic
 		case 'finely garlic':
 		case 'deep fried garlic':
 			return 'garlic';
+
 		// stock
 		case 'very reduced chicken stock':
 			return 'chicken stock';
+
 		case 'hot vegetable stock':
 			return 'vegetable stock';
+
 		// vinegar
 		// wine
-		case 'dry white  wine':
+		case 'white wine':
+		case 'dry white wine':
 		case 'glass white wine':
 			return 'white wine';
 
-		case 'glass red wine':
 		case 'red wine':
+		case 'glass red wine':
 		case 'full bodied red wine':
 		case 'robust red wine':
 			return 'red wine';
@@ -235,11 +224,7 @@ export const normalise = (ingredient) => {
 		case 'water':
 		case 'ice water':
 		case 'iced water':
-		case 'ice-cold water':
 		case 'cold water':
-		case 'lukewarm water':
-		case 'warm water':
-		case 'hot water':
 		case 'boiling water':
 			return 'water';
 
