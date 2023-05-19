@@ -3,17 +3,14 @@
 	import Recipes from '../lib/Recipes.svelte';
 	import { extract_ingredients } from '../lib/ingredients';
 	import { normalise } from '../lib/normalise';
+	import { filtered } from '../lib/recipes';
 
 	export let data;
 
 	let search = '';
 	let selection = /** @type {Set<string>} */ (new Set());
 
-	$: list = data.recipes.filter(({ ingredients_lists }) =>
-		ingredients_lists.some(({ ingredients: listed }) =>
-			[...selection].every((term) => listed.some(({ item }) => normalise(item) === term)),
-		),
-	);
+	$: list = filtered(data.recipes, ...selection);
 
 	$: ingredients = extract_ingredients(list);
 

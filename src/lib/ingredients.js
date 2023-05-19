@@ -1,6 +1,6 @@
 import { normalise } from './normalise';
 
-/** @param {import("../parser").Recipe[]} list */
+/** @param {import("./parser").Recipe[]} list */
 export const extract_ingredients = (list) =>
 	list.reduce((accumulator, { ingredients_lists }) => {
 		for (const ingredient of ingredients_lists
@@ -12,7 +12,7 @@ export const extract_ingredients = (list) =>
 	}, /** @type {Map<string, number>} */ (new Map()));
 
 /**
- * @param {import("../parser").Recipe} recipe
+ * @param {import("./parser").Recipe} recipe
  * @param {Set<string>} pantry_ingredients
  */
 export const completion = (recipe, pantry_ingredients) =>

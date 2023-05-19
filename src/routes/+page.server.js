@@ -1,4 +1,4 @@
-import { recipes } from '../recipes.js';
+import { recipes } from '../lib/recipes.js';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load() {

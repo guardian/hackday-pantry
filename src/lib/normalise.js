@@ -256,6 +256,19 @@ export const normalise = (ingredient) => {
 		case 'firm silken tofu':
 			return 'tofu';
 
+		case 'leek':
+		case 'leeks':
+		case 'young leeks':
+			return 'leek';
+
+		case 'potato':
+		case 'potatoes':
+		case 'mixed potatoes':
+		case 'cooked potatoes':
+		case 'leftover roast potatoes':
+		case 'maris piper potatoes':
+			return 'potato';
+
 		default:
 			return normalised;
 	}

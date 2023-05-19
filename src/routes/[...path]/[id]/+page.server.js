@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { recipes } from '../../../recipes.js';
+import { recipes } from '../../../lib/recipes.js';
 
 /** @type {import('./$types.js').PageServerLoad} */
 export async function load({ params }) {
